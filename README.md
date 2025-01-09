@@ -18,5 +18,18 @@ Make a clear list of features that work/dont work
 
 ## Adventurer Subclasses
 
-replace this with your documentation for your two Adventurer subclasses. If you modify or replace the provided CodeWarrior class, please provide documentation for that as well.
+## Healer
 
+**Starting HP:** 23 HP
+
+* **Attack:** deals 2-3 damage
+* **Support:** adds 5-7 damage to specified player
+* **Special:** decreases next attack by 5%; *this ability is unlocked once they have healed at least 15 HP*
+
+## Mage
+
+**Starting HP:** 28 HP
+
+* **Attack:** deals 6-9 damage
+* **Support:** adds 4-6 damage to specified player
+* **Special:** skips the opponent's turn; *this ability is unlocked once they have 5 Magic Points; Magic Points are earned by attacking and healing*
