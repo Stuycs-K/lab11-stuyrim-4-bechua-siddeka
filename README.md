@@ -16,20 +16,34 @@ Make a clear list of features that work/dont work
 :beetle: This is a bug that affects the game.
 
 
+# Adventurer Battle Game
+
 ## Adventurer Subclasses
 
-## Healer
+The game includes different adventurers, each with their own abilities and roles. Each adventurer has a certain amount of **HP** and different **actions** that can be used during combat.
+
+### Healer
 
 **Starting HP:** 23 HP
 
-* **Attack:** deals 2-3 damage
-* **Support:** adds 5-7 damage to specified player
-* **Special:** decreases next attack by 5%; *this ability is unlocked once they have healed at least 15 HP*
+* **Attack:** Deals 2-3 damage to the opponent
+* **Support:** Heals another player by adding 5-7 damage to specified player
+* **Special:** Decreases next attack by 5%; *This ability is unlocked once they have healed at least 15 HP*
 
-## Mage
+### Mage
 
 **Starting HP:** 28 HP
 
-* **Attack:** deals 6-9 damage
-* **Support:** adds 4-6 damage to specified player
-* **Special:** skips the opponent's turn; *this ability is unlocked once they have 5 Magic Points; Magic Points are earned by attacking and healing*
+* **Attack:** Deals 6-9 damage to the opponent
+* **Support:** Adds 4-6 damage to specified player
+* **Special:** Skips the opponent's next turn; *This ability is unlocked once they have 5 Magic Points; Magic Points are earned by attacking and healing*
+
+---
+
+## The Dragon Boss
+
+### Dragon
+**Starting HP:** 70-80 HP
+* **Attack:** Deals 10-12 damage to a single target.
+* **Support:** Adds 7-9 HP to itself.
+* **Special Attack:** This attack decreases the HP of all three opponents by 17 HP across all three.
