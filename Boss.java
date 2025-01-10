@@ -43,7 +43,7 @@ public class Boss extends Adventurer{
 
   public String support(ArrayList<Adventurer> others) {
     String result = "";
-    int healing = (int)(Math.random() * 10) + 15
+    int healing = (int)(Math.random() * 7) + 10
     for (int i = 0; i < others.size(); i++) {
       target.setHP(getHP() + healing);
       result += getName() + " supports " + target.getName() + " by " + healing + " HP. ";
@@ -56,7 +56,7 @@ public class Boss extends Adventurer{
       SetSpecial(getSpecial() - 20);
       int damage = (int)(Math.random() * 10) + 15;
       other.applyDamage(damage);
-      return getName() + " attacks " + other.getName() + " by " + damage + " HP ";
+      return getName() + " attacks " + other.getName() + " by " + damage + " HP. ";
     } else {
       return getName() + " does not have enough Rage to use a special attack.";
     }
