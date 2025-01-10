@@ -6,5 +6,24 @@ public class Boss extends Adventurer{
   private int specialResource;
   private int specialMax = 100;
 
-  
+  public Boss(String name) {
+    super(name, 75);
+    this.specialResource = 50;
+  }
+
+  public String getSpecialName(){
+    return "Rage";
+  }
+
+  public int getSpecial(){
+    return specialResource;
+  }
+
+  public int getSpecialMax(){
+    return specialMax;
+  }
+
+  public void setSpecial(int n){
+    specialResource = n;
+  }
 }
