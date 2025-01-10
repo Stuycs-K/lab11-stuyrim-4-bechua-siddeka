@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public class Boss extends Adventurer{
   private int attackMin = 10;
   private int attackMax = 12;
@@ -33,10 +35,6 @@ public class Boss extends Adventurer{
     return getName() + " attacks " + other.getName() + " dealing " + damage + " damage.";
   }
 
-  public String specialAttack(Adventurer other) {
-
-  }
-
   public String support(Adventurer other){
     int healing = (int)(Math.random() * (supportMax - supportMin + 1)) + supportMin;
     other.setHP(other.getHP() + healing);
@@ -45,7 +43,23 @@ public class Boss extends Adventurer{
 
   public String support(ArrayList<Adventurer> others) {
     String result = "";
-    for (int i = 0; i < others.size(); )
+    int healing = (int)(Math.random() * 10) + 15
+    for (int i = 0; i < others.size(); i++) {
+      target.setHP(getHP() + healing);
+      result += getName() + " supports " + target.getName() + " by " + healing + " HP. ";
+    }
+    return result;
+  }
+
+  public String specialAttack(Adventurer other) {
+    if (getSpecial() >= 20 {
+      SetSpecial(getSpecial() - 20);
+      int damage = (int)(Math.random() * 10) + 15;
+      other.applyDamage(damage);
+      return getName() + " attacks " + other.getName() + " by " + damage + " HP ";
+    } else {
+      return getName() + " does not have enough Rage to use a special attack.";
+    }
   }
 
   public String specialAttack(ArrayList<Adventurer> others) {
