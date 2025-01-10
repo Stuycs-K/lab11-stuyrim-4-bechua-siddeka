@@ -46,4 +46,4 @@ The game includes different adventurers, each with their own abilities and roles
 **Starting HP:** 70-80 HP
 * **Attack:** Deals 10-12 damage to a single target.
 * **Support:** Adds 7-9 HP to itself.
-* **Special Attack:** This attack decreases the HP of all three opponents by 17 HP across all three. *Special resource must be at least 20 for this to be used. After one use, the special resource reverts to zero and must be built up again through attacks* 
+* **Special Attack:** This attack decreases the HP of all three opponents by 17 HP across all three. *Special resource must be at least 20 for this to be used. After one use, the special resource reverts to zero and must be built up again through attacks*
