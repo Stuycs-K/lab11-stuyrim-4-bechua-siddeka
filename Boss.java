@@ -33,6 +33,12 @@ public class Boss extends Adventurer{
     return getName() + " attacks " + other.getName() + " dealing " + damage + " damage.";
   }
 
+  public String specialAttack(Adventurer other) {}
+
+  public String support(Adventurer other){}
+
+  public String support(ArrayList<Adventurer> others) {}
+
   public String specialAttack(ArrayList<Adventurer> others) {
     String result = "";
     if (getSpecial() >= 20) {
@@ -47,4 +53,6 @@ public class Boss extends Adventurer{
       return getName() + " does not have enough Rage to use a special attack.";
     }
   }
+
+
 }
