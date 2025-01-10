@@ -2,6 +2,7 @@ import java.util.Random;
 public abstract class Adventurer{
   private String name;
   private int HP,maxHP;
+  private boolean reduction = false;
 
   //Abstract methods are meant to be implemented in child classes.
   /*
@@ -15,6 +16,14 @@ public abstract class Adventurer{
   public abstract int getSpecial();
   public abstract int getSpecialMax();
   public abstract void setSpecial(int n);
+
+  public boolean getReduction() {
+    return this.reduction;
+  }
+
+  public void setReduction(boolean setTo) {
+    this.reduction = setTo;
+  }
 
   //concrete method written using abstract methods.
   //refill special resource by amount, but only up to at most getSpecialMax()
