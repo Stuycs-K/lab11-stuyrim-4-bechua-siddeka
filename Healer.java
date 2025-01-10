@@ -16,11 +16,11 @@ public class Healer extends Adventurer {
     public int getSpecial(){
         return hpHealed;
     }
-    
+
     public int getSpecialMax(){
         return specialMax;
     }
-    
+
     public void setSpecial(int n){
         hpHealed = n;
     }
@@ -52,5 +52,17 @@ public class Healer extends Adventurer {
         setSpecial(getSpecial()+addedHP);
 
         return getName() + " restored " + addedHP + " HP for themself. They need to restore " + (15-getSpecial()) + " HP to unlock their special.";
+    }
+
+    public String specialAttack(Adventurer other) {
+      if (getSpecial() >= 15) {
+        setSpecial(getSpecial()-15);
+
+        //implement the 5% reduction by adding a variable to Adventurer class and checking that before attack
+
+        return getName() + " has used 15 of their total HP healed to reduce the damage of " + other.getName() "'s next attack by 5%";
+      } else {
+        return getName() + " still needs to heal " + (15-getSpecial()) + " HP to unlock their special. Instead " + attack(other);
+      }
     }
 }
