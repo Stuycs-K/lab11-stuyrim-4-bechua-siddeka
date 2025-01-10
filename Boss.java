@@ -33,11 +33,20 @@ public class Boss extends Adventurer{
     return getName() + " attacks " + other.getName() + " dealing " + damage + " damage.";
   }
 
-  public String specialAttack(Adventurer other) {}
+  public String specialAttack(Adventurer other) {
 
-  public String support(Adventurer other){}
+  }
 
-  public String support(ArrayList<Adventurer> others) {}
+  public String support(Adventurer other){
+    int healing = (int)(Math.random() * (supportMax - supportMin + 1)) + supportMin;
+    other.setHP(other.getHP() + healing);
+    return getName() + " heals " + other.getName() + " by " + damage + " HP. ";
+  }
+
+  public String support(ArrayList<Adventurer> others) {
+    String result = "";
+    for (int i = 0; i < others.size(); )
+  }
 
   public String specialAttack(ArrayList<Adventurer> others) {
     String result = "";
