@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.util.ArrayList;
 
 public class Boss extends Adventurer{
   private int attackMin = 10;
@@ -9,7 +9,7 @@ public class Boss extends Adventurer{
   private int specialMax = 100;
 
   public Boss(String name) {
-    super(name, 75);
+    super(name, 80);
     this.specialResource = 50;
   }
 
@@ -40,6 +40,9 @@ public class Boss extends Adventurer{
     return getName() + " attacks " + other.getName() + " dealing " + damage + " damage.";
   }
 
+  public String support();
+
+
   public String support(Adventurer other){
     int healing = (int)(Math.random() * (supportMax - supportMin + 1)) + supportMin;
     other.setHP(other.getHP() + healing);
@@ -48,7 +51,7 @@ public class Boss extends Adventurer{
 
   public String support(ArrayList<Adventurer> others) {
     String result = "";
-    int healing = (int)(Math.random() * 7) + 10
+    int healing = (int)(Math.random() * 7) + 10;
     for (int i = 0; i < others.size(); i++) {
       target.setHP(getHP() + healing);
       result += getName() + " supports " + target.getName() + " by " + healing + " HP. ";
@@ -57,8 +60,8 @@ public class Boss extends Adventurer{
   }
 
   public String specialAttack(Adventurer other) {
-    if (getSpecial() >= 20 {
-      SetSpecial(getSpecial() - 20);
+    if (getSpecial() >= 20) {
+      setSpecial(getSpecial() - 20);
       int damage = (int)(Math.random() * 10) + 15;
       other.applyDamage(damage);
       return getName() + " attacks " + other.getName() + " by " + damage + " HP. ";
