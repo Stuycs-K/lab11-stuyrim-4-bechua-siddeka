@@ -27,6 +27,11 @@ public class Mage extends Adventurer {
 
   public String attack(Adventurer other) {
     int damage = (int) (Math.random() * (attackMax - attackMin + 1)) + attackMin;
+
+    if (this.getReduction()) {
+      damage = (int) damage * 0.95;
+    }
+
     other.applyDamage(damage);
     magicPoints += 1;
     if (magicPoints >= MAGIC_THRESHOLD && !specialUsed) {
