@@ -26,24 +26,24 @@ The game includes different adventurers, each with their own abilities and roles
 
 **Starting HP:** 23 HP
 
-* **Attack:** Deals 2-3 damage to the opponent
-* **Support:** Heals another player by adding 5-7 damage to specified player
-* **Special:** Decreases next attack by 5%; *This ability is unlocked once they have healed at least 15 HP*
+* **Attack:** Deals 2-3 damage to a specified opponent.
+* **Support:** Heals another player by adding 5-7 HP to specified player.
+* **Special:** Decreases the opponent's next attack by 5%; *This ability is unlocked once they have healed teammates by at least 15 HP*
 
 ### Mage
 
 **Starting HP:** 28 HP
 
-* **Attack:** Deals 6-9 damage to the opponent
-* **Support:** Adds 4-6 damage to specified player
-* **Special:** Skips the opponent's next turn; *This ability is unlocked once they have 5 Magic Points; Magic Points are earned by attacking and healing*
+* **Attack:** Deals 4-6 damage to a random opponent
+* **Support:** Adds 6-7 HP to all players on their team, excluding itself.
+* **Special:** Skips the opponent's next turn; *This ability is unlocked once they have 5 Magic Points; Magic Points are earned by attacking opponents*
 
 ---
 
 ## The Dragon Boss
 
 ### Dragon
-**Starting HP:** 70-80 HP
+**Starting HP:** 80 HP
 * **Attack:** Deals 10-12 damage to a single target.
 * **Support:** Adds 7-9 HP to itself.
-* **Special Attack:** This attack decreases the HP of all three opponents by 17 HP across all three. *Special resource must be at least 20 for this to be used. After one use, the special resource reverts to zero and must be built up again through attacks*
+* **Special Attack:** This attack decreases the HP of all three opponents by 17 HP across all three (the amount of individual damage is randomized but must sum to 17 across the opponent's team). *Special resource must be at least 20 for this to be used. After one use, the special resource reverts to zero and must be built up again through attacks*
