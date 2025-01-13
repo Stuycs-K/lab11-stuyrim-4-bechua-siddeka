@@ -31,6 +31,11 @@ public class Boss extends Adventurer{
 
   public String attack(Adventurer other){
     int damage = (int)(Math.random() * (attackMax - attackMin + 1)) + attackMin;
+
+    if (this.getReduction()) {
+      damage = (int) damage * 0.95;
+    }
+
     other.applyDamage(damage);
     return getName() + " attacks " + other.getName() + " dealing " + damage + " damage.";
   }
