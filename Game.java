@@ -15,6 +15,23 @@ public class Game{
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+    for (int i = 0; i < WIDTH; i++){
+      System.out.println(Text.colorize(" ", BORDER_BACKGROUND) + ">");
+    }
+
+    for (int i = 0; i < HEIGHT - 2; i++){
+      System.out.println(Text.colorize(" ", BORDER_BACKGROUND) + ">");
+      for (int j = 0; i < WIDTH - 2; i++){
+        System.out.println(" ");
+      }
+      System.out.println(Text.colorize(" ", BORDER_BACKGROUND) + ">");
+    }
+
+    for (int i = 0; i < WIDTH; i++){
+      System.out.println(Text.colorize(" ", BORDER_BACKGROUND) + ">");
+    }
+
   }
 
   //Display a line of text starting at
