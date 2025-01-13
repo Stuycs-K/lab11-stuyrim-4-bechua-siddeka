@@ -43,6 +43,11 @@ public class CodeWarrior extends Adventurer{
   /*Deal 2-7 damage to opponent, restores 2 caffeine*/
   public String attack(Adventurer other){
     int damage = (int)(Math.random()*6)+2;
+
+    if (this.getReduction()) {
+      damage = (int) damage * 0.95;
+    }
+
     other.applyDamage(damage);
     restoreSpecial(2);
     return this + " attacked "+ other + " and dealt "+ damage +
