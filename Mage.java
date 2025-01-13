@@ -44,4 +44,30 @@ public class Mage extends Adventurer {
     }
     return getName() + " heals " + other.getName() + " by " + healing + " HP.";
   }
+
+  public String specialAttack(Adventurer other) {
+    if (magicPoints >= MAGIC_THRESHOLD && !specialUsed) {
+      specialUsed = true;
+      return getName() + " casts " + getSpecialName() + " and skips " + other.getName() + " next turn!";
+    } else if (specialUsed) {
+      return getName() + " has already used the special attack";
+    } else {
+      return getName() + " does not have enough magic points to use the special attack.";
+    }
+  }
+
+  public String specialAttack(ArrayList<Adventurer> others) {
+    if (magicPoints >= MAGIC_THRESHOLD && !specialUsed) {
+      specialUsed = true;
+      String result = getName() + " casts " + getSpecialName() + " and skips the next turns of ";
+      for (Adventurer target : others) {
+        result += target.getName() + ", ";
+      }
+      return result + "and skips their turns!";
+    } else if (specialUsed) {
+      return getName() + " has already used the special attack";
+      } else {
+        return getName() + " does not have enough magic points to use the special attack.";
+      }
+    }
 }
