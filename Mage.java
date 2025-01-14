@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Mage extends Adventurer {
   private int attackMin = 6;
   private int attackMax = 9;
@@ -29,7 +31,7 @@ public class Mage extends Adventurer {
     int damage = (int) (Math.random() * (attackMax - attackMin + 1)) + attackMin;
 
     if (this.getReduction()) {
-      damage = (int) damage * 0.95;
+      damage = (int) (damage * 0.95);
     }
 
     other.applyDamage(damage);
@@ -48,6 +50,10 @@ public class Mage extends Adventurer {
       specialUsed = true;
     }
     return getName() + " heals " + other.getName() + " by " + healing + " HP.";
+  }
+
+  public abstract String support(){
+    return
   }
 
   public String specialAttack(Adventurer other) {
