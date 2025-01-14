@@ -17,20 +17,24 @@ public class Game{
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
     for (int i = 0; i < WIDTH; i++){
-      System.out.println(Text.colorize(" ", BORDER_BACKGROUND) + ">");
+      System.out.println(Text.colorize(">", BORDER_COLOR, BORDER_BACKGROUND));
     }
 
+    System.out.println();
+
     for (int i = 0; i < HEIGHT - 2; i++){
-      System.out.println(Text.colorize(" ", BORDER_BACKGROUND) + ">");
-      for (int j = 0; i < WIDTH - 2; i++){
+      System.out.println(Text.colorize(">", BORDER_COLOR, BORDER_BACKGROUND));
+      for (int j = 0; i < WIDTH - 2; j++){
         System.out.println(" ");
       }
-      System.out.println(Text.colorize(" ", BORDER_BACKGROUND) + ">");
+      System.out.println(Text.colorize(">", BORDER_COLOR, BORDER_BACKGROUND));
     }
 
     for (int i = 0; i < WIDTH; i++){
-      System.out.println(Text.colorize(" ", BORDER_BACKGROUND) + ">");
+      System.out.println(Text.colorize(">", BORDER_COLOR, BORDER_BACKGROUND));
     }
+
+    System.out.println();
 
   }
 
@@ -38,9 +42,8 @@ public class Game{
   //(columns and rows start at 1 (not zero) in the terminal)
   //use this method in your other text drawing methods to make things simpler.
   public static void drawText(String s,int startRow, int startCol){
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+    go(startRow, startCol);
+    System.out.println(s);
   }
 
   /*Use this method to place text on the screen at a particular location.
@@ -64,18 +67,18 @@ public class Game{
 
     //return a random adventurer (choose between all available subclasses)
     //feel free to overload this method to allow specific names/stats.
-    public static Adventurer createRandomAdventurer(String name){
+    public static Adventurer createRandomAdventurer(){
       Random rng = new Random();
       int choice = rng.nextInt(3);
 
       if (choice == 0) {
-        return new CodeWarrior(name);
+        return new CodeWarrior("Warrior"+(int)(Math.random()*100));
       }
       if (choice == 1) {
-        return new Healer(name);
+        return new Healer("Healer"+(int)(Math.random()*100));
       }
       if (choice == 2) {
-        return new Mage(name);
+        return new Mage("Mage"+(int)(Math.random()*100));
       }
     }
 
@@ -153,14 +156,30 @@ public class Game{
     //start with 1 boss and modify the code to allow 2-3 adventurers later.
     ArrayList<Adventurer>enemies = new ArrayList<Adventurer>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
+    Random rng = new Random();
+    int numOfEnemies = rng.nextInt(3) + 1;
+
+    if (numOfEnemies == 1) {
+      Boss boss = new Boss("Boss"+(int)(Math.random()*100));
+      enemies.add(boss);
+    }
+    else {
+      for (int x = 0; x < numOfEnemies; x++) {
+        enemies.add(createRandomAdventurer());
+      }
+    }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
     //Adventurers you control:
     //Make an ArrayList of Adventurers and add 2-4 Adventurers to it.
     ArrayList<Adventurer> party = new ArrayList<>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
+    Random rng = new Random();
+    int partySize = rng.nextInt(3) + 2;
+
+    for (int x = 0; x < partySize; x++) {
+      party.add(createRandomAdventurer());
+    }
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
     boolean partyTurn = true;

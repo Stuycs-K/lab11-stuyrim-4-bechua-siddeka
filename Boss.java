@@ -33,26 +33,31 @@ public class Boss extends Adventurer{
     int damage = (int)(Math.random() * (attackMax - attackMin + 1)) + attackMin;
 
     if (this.getReduction()) {
-      damage = (int) damage * 0.95;
+      damage = (int) (damage * 0.95);
     }
 
     other.applyDamage(damage);
     return getName() + " attacks " + other.getName() + " dealing " + damage + " damage.";
   }
 
-  public String support();
+  public String support() {
+    int healing = (int) (Math.random() * (supportMax - supportMin + 1)) + supportMin;
+    this.setHP(this.getHP() + healing);
+    return getName() + " heals itself by " + healing + " HP.";
+  }
 
 
   public String support(Adventurer other){
     int healing = (int)(Math.random() * (supportMax - supportMin + 1)) + supportMin;
     other.setHP(other.getHP() + healing);
-    return getName() + " heals " + other.getName() + " by " + damage + " HP. ";
+    return getName() + " heals " + other.getName() + " by " + healing + " HP. ";
   }
 
   public String support(ArrayList<Adventurer> others) {
     String result = "";
     int healing = (int)(Math.random() * 7) + 10;
     for (int i = 0; i < others.size(); i++) {
+      Adventurer target = others.get(i);
       target.setHP(getHP() + healing);
       result += getName() + " supports " + target.getName() + " by " + healing + " HP. ";
     }

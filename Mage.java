@@ -62,11 +62,18 @@ public class Mage extends Adventurer {
     return getName() + " heals " + other.getName() + " by " + healing + " HP.";
   }
 
+<<<<<<< HEAD
   public String support() {
     return null;
   }
 
 
+=======
+  public abstract String support(){
+    return
+  }
+
+>>>>>>> 0de724835675b1c50c6313cea333f86ec7b2de53
   public String specialAttack(Adventurer other) {
     if (magicPoints >= MAGIC_THRESHOLD && !specialUsed) {
       specialUsed = true;
