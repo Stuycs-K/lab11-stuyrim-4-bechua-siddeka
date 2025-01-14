@@ -45,7 +45,7 @@ public class CodeWarrior extends Adventurer{
     int damage = (int)(Math.random()*6)+2;
 
     if (this.getReduction()) {
-      damage = (int) damage * 0.95;
+      damage = (int) (damage * 0.95);
     }
 
     other.applyDamage(damage);
