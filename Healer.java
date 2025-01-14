@@ -30,7 +30,7 @@ public class Healer extends Adventurer {
         int damage = random.nextInt(2) + 2;
 
         if (this.getReduction()) {
-          damage = (int) damage * 0.95;
+          damage = (int) (damage * 0.95);
         }
 
         other.applyDamage(damage);
@@ -65,7 +65,7 @@ public class Healer extends Adventurer {
         //implement the 5% reduction by adding a variable to Adventurer class and checking that before attack
         other.setReduction(true);
 
-        return getName() + " has used 15 of their total HP healed to reduce the damage of " + other.getName() "'s next attack by 5%";
+        return getName() + " has used 15 of their total HP healed to reduce the damage of " + other.getName() + "'s next attack by 5%";
       } else {
         return getName() + " still needs to heal " + (15-getSpecial()) + " HP to unlock their special. Instead " + attack(other);
       }
