@@ -5,8 +5,8 @@ public class Mage extends Adventurer {
   private int attackMax = 9;
   private int supportMin = 4;
   private int supportMax = 6;
-  private int special;
-  private int specialMax;
+  private int special = 5;
+  private int specialMax = 10;
   private int magicPoints;
   private final int MAGIC_THRESHOLD = 5;
   private boolean specialUsed;
@@ -25,7 +25,11 @@ public class Mage extends Adventurer {
     special = n;
   }
 
-  public String getSpecialMax(){
+  public int getSpecial(){
+    return special;
+  }
+
+  public int getSpecialMax(){
     return specialMax;
   }
 
@@ -62,18 +66,10 @@ public class Mage extends Adventurer {
     return getName() + " heals " + other.getName() + " by " + healing + " HP.";
   }
 
-<<<<<<< HEAD
   public String support() {
     return null;
   }
 
-
-=======
-  public abstract String support(){
-    return
-  }
-
->>>>>>> 0de724835675b1c50c6313cea333f86ec7b2de53
   public String specialAttack(Adventurer other) {
     if (magicPoints >= MAGIC_THRESHOLD && !specialUsed) {
       specialUsed = true;
