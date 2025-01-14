@@ -42,7 +42,7 @@ public class Game{
   //(columns and rows start at 1 (not zero) in the terminal)
   //use this method in your other text drawing methods to make things simpler.
   public static void drawText(String s,int startRow, int startCol){
-    go(startRow, startCol);
+    Text.go(startRow, startCol);
     System.out.println(s);
   }
 
@@ -80,6 +80,8 @@ public class Game{
       if (choice == 2) {
         return new Mage("Mage"+(int)(Math.random()*100));
       }
+
+      return new Mage("Mage"+(int)(Math.random()*100));
     }
 
     /*Display a List of 2-4 adventurers on the rows row through row+3 (4 rows max)
@@ -92,10 +94,6 @@ public class Game{
     * ***THIS ROW INTENTIONALLY LEFT BLANK***
     */
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
-
-      /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-      //YOUR CODE HERE
-      /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
     }
 
 
@@ -116,7 +114,7 @@ public class Game{
   //Display the party and enemies
   //Do not write over the blank areas where text will appear.
   //Place the cursor at the place where the user will by typing their input at the end of this method.
-  public static void drawScreen(){
+  public static void drawScreen(ArrayList<Adventurer> party, ArrayList<Adventurer> enemies){
 
     drawBackground();
 
@@ -174,8 +172,8 @@ public class Game{
     //Make an ArrayList of Adventurers and add 2-4 Adventurers to it.
     ArrayList<Adventurer> party = new ArrayList<>();
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    Random rng = new Random();
-    int partySize = rng.nextInt(3) + 2;
+    Random rng2 = new Random();
+    int partySize = rng2.nextInt(3) + 2;
 
     for (int x = 0; x < partySize; x++) {
       party.add(createRandomAdventurer());
@@ -191,7 +189,7 @@ public class Game{
     //Draw the window border
 
     //You can add parameters to draw screen!
-    drawScreen();//initial state.
+    drawScreen(party, enemies);//initial state.
 
     //Main loop
 
@@ -277,7 +275,7 @@ public class Game{
       }
 
       //display the updated screen after input has been processed.
-      drawScreen();
+      drawScreen(party, enemies);
 
 
     }//end of main game loop
