@@ -5,7 +5,7 @@ public class Boss extends Adventurer{
   private int attackMax = 12;
   private int supportMin = 7;
   private int supportMax = 9;
-  private int specialResource;
+  private int specialResource = 0;
   private int specialMax = 100;
 
   public Boss(String name) {
@@ -40,24 +40,22 @@ public class Boss extends Adventurer{
     return getName() + " attacks " + other.getName() + " dealing " + damage + " damage.";
   }
 
-  public String support() {
-    int healing = (int) (Math.random() * (supportMax - supportMin + 1)) + supportMin;
-    this.setHP(this.getHP() + healing);
-    return getName() + " heals itself by " + healing + " HP.";
+  public String support(){
+    int healing = (int)(Math.random() + 7) + 2;
+    setHP(getHP + healing);
+    return "the boss restored " + healing + " HP ti themselves";
   }
-
 
   public String support(Adventurer other){
     int healing = (int)(Math.random() * (supportMax - supportMin + 1)) + supportMin;
     other.setHP(other.getHP() + healing);
-    return getName() + " heals " + other.getName() + " by " + healing + " HP. ";
+    return getName() + " heals " + other.getName() + " by " + damage + " HP. ";
   }
 
   public String support(ArrayList<Adventurer> others) {
     String result = "";
     int healing = (int)(Math.random() * 7) + 10;
     for (int i = 0; i < others.size(); i++) {
-      Adventurer target = others.get(i);
       target.setHP(getHP() + healing);
       result += getName() + " supports " + target.getName() + " by " + healing + " HP. ";
     }
@@ -81,8 +79,8 @@ public class Boss extends Adventurer{
       setSpecial(getSpecial() - 20);
       int damage = 17;
       for (int i = 0; i < others.size(); i++) {
-        others.get(i).applyDamage(damage);
-        result += getName() + " unleashes a special attack on " + others.get(i).getName() + " and damages by " + damage + " hp.";
+        target.applyDamage(damage);
+        result += getName() + " unleashes a special attack on " + target.getName() + " and damages by " + damage + " hp.";
       }
       return result;
     } else {
