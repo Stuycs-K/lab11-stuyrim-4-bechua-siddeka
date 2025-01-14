@@ -1,8 +1,12 @@
+import java.util.ArrayList;
+
 public class Mage extends Adventurer {
   private int attackMin = 6;
   private int attackMax = 9;
   private int supportMin = 4;
   private int supportMax = 6;
+  private int special;
+  private int specialMax;
   private int magicPoints;
   private final int MAGIC_THRESHOLD = 5;
   private boolean specialUsed;
@@ -17,6 +21,14 @@ public class Mage extends Adventurer {
     return "Skip";
   }
 
+  public void setSpecial(int n){
+    special = n;
+  }
+
+  public String getSpecialMax(){
+    return specialMax;
+  }
+
   public int getMagicPoints() {
     return magicPoints;
   }
@@ -29,7 +41,7 @@ public class Mage extends Adventurer {
     int damage = (int) (Math.random() * (attackMax - attackMin + 1)) + attackMin;
 
     if (this.getReduction()) {
-      damage = (int) damage * 0.95;
+      damage = (int) (damage * 0.95);
     }
 
     other.applyDamage(damage);
@@ -49,6 +61,11 @@ public class Mage extends Adventurer {
     }
     return getName() + " heals " + other.getName() + " by " + healing + " HP.";
   }
+
+  public String support() {
+    return null;
+  }
+
 
   public String specialAttack(Adventurer other) {
     if (magicPoints >= MAGIC_THRESHOLD && !specialUsed) {
