@@ -5,12 +5,12 @@ public class Boss extends Adventurer{
   private int attackMax = 12;
   private int supportMin = 7;
   private int supportMax = 9;
-  private int specialResource = 0;
+  private int specialResource;
   private int specialMax = 100;
 
   public Boss(String name) {
     super(name, 80);
-    this.specialResource = 50;
+    this.specialResource = 0;
   }
 
   public String getSpecialName(){
@@ -37,12 +37,13 @@ public class Boss extends Adventurer{
     }
 
     other.applyDamage(damage);
+    setSpecial(getSpecial() + 2);
     return getName() + " attacks " + other.getName() + " dealing " + damage + " damage.";
   }
 
   public String support(){
     int healing = (int)(Math.random() + 7) + 2;
-    setHP(getHP + healing);
+    setHP(getHP() + healing);
     return "the boss restored " + healing + " HP ti themselves";
   }
 
@@ -50,16 +51,6 @@ public class Boss extends Adventurer{
     int healing = (int)(Math.random() * (supportMax - supportMin + 1)) + supportMin;
     other.setHP(other.getHP() + healing);
     return getName() + " heals " + other.getName() + " by " + damage + " HP. ";
-  }
-
-  public String support(ArrayList<Adventurer> others) {
-    String result = "";
-    int healing = (int)(Math.random() * 7) + 10;
-    for (int i = 0; i < others.size(); i++) {
-      target.setHP(getHP() + healing);
-      result += getName() + " supports " + target.getName() + " by " + healing + " HP. ";
-    }
-    return result;
   }
 
   public String specialAttack(Adventurer other) {
