@@ -269,7 +269,26 @@ public class Game{
         //enemy attacks a randomly chosen person with a randomly chosen attack.z`
         //Enemy action choices go here!
         /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-        //YOUR CODE HERE
+        Random rand = new Random();
+        int enemyIndex = rand.nextInt(numOfEnemies);
+        int partyIndex = rand.nextInt(partySize);
+
+        int action = rand.nextInt(3);
+
+        if (action == 0) {
+          enemies.get(enemyIndex).attack(party.get(partyIndex));
+        }
+        if (action == 1) {
+          if (enemies.size() == 1) {
+            enemies.get(enemyIndex).support();
+          }
+          else {
+            enemies.get(enemyIndex).support(enemies.get(rand.nextInt(numOfEnemies)));
+          }
+        }
+        if (action == 2) {
+          enemies.get(enemyIndex).special(party.get(partyIndex));
+        }
         /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 
