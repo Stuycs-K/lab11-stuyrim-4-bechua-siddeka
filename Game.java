@@ -12,26 +12,35 @@ public class Game{
   //Display the borders of your screen that will not change.
   //Do not write over the blank areas where text will appear or parties will appear.
   public static void drawBackground(){
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
     for (int i = 0; i < WIDTH; i++){
-      System.out.println(Text.colorize(">", BORDER_COLOR, BORDER_BACKGROUND));
+      System.out.println(Text.colorize("-", BORDER_COLOR, BORDER_BACKGROUND));
     }
 
     System.out.println();
 
     for (int i = 0; i < HEIGHT - 2; i++){
-      System.out.println(Text.colorize(">", BORDER_COLOR, BORDER_BACKGROUND));
+      System.out.println(Text.colorize("|", BORDER_COLOR, BORDER_BACKGROUND));
       for (int j = 0; i < WIDTH - 2; j++){
         System.out.println(" ");
       }
-      System.out.println(Text.colorize(">", BORDER_COLOR, BORDER_BACKGROUND));
+      System.out.println(Text.colorize("|", BORDER_COLOR, BORDER_BACKGROUND));
     }
 
     for (int i = 0; i < WIDTH; i++){
-      System.out.println(Text.colorize(">", BORDER_COLOR, BORDER_BACKGROUND));
+      System.out.println(Text.colorize("-", BORDER_COLOR, BORDER_BACKGROUND));
+    }
+
+    for (int i = 0; i < WIDTH; i++){
+      drawText("-", 10, 1);
+    }
+
+    for (int i = 0; i < WIDTH; i++){
+      drawText("-", 20, 1);
+    }
+
+    for (int i = 0; i < WIDTH; i++){
+      drawText("-", 30, 1);
     }
 
     System.out.println();
@@ -57,6 +66,11 @@ public class Game{
   *@param height the number of rows
   */
   public static void TextBox(int row, int col, int width, int height, String text){
+
+    for (int i = 0; i < text.length(); i ++){
+      if (text)
+    }
+
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
@@ -94,6 +108,9 @@ public class Game{
     * ***THIS ROW INTENTIONALLY LEFT BLANK***
     */
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
+
+
+     /// add code
     }
 
 
