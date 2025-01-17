@@ -21,7 +21,7 @@ public class Game{
 
     for (int i = 0; i < HEIGHT - 2; i++){
       System.out.println(Text.colorize("|", BORDER_COLOR, BORDER_BACKGROUND));
-      for (int j = 0; i < WIDTH - 2; j++){
+      for (int j = 0; ij < WIDTH - 2; j++){
         System.out.println(" ");
       }
       System.out.println(Text.colorize("|", BORDER_COLOR, BORDER_BACKGROUND));
@@ -66,15 +66,22 @@ public class Game{
   *@param height the number of rows
   */
   public static void TextBox(int row, int col, int width, int height, String text){
-
-    for (int i = 0; i < text.length(); i ++){
-      if (text)
+    int i = 0;
+    for (int r = 0; r < height; r++) {
+      for (int c = 0; c < width; c++) {
+        int id = r * width + c;
+        if (id < text.length()) {
+          drawText((text.charAt(idx)), row + r, col + c);
+        } else {
+          drawText(" ", r , c);
+        }
+      }
     }
 
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-  }
+}
 
 
 
