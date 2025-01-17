@@ -111,7 +111,7 @@ public class Game{
 
       Text.go (2, 2);
 
-      System.out.println( Boss.getHP());
+      System.out.println(Boss.getHP());
 
 
      /// add code
