@@ -50,7 +50,7 @@ public class Boss extends Adventurer{
   public String support(Adventurer other){
     int healing = (int)(Math.random() * (supportMax - supportMin + 1)) + supportMin;
     other.setHP(other.getHP() + healing);
-    return getName() + " heals " + other.getName() + " by " + damage + " HP. ";
+    return getName() + " heals " + other.getName() + " by " + healing + " HP. ";
   }
 
   public String specialAttack(Adventurer other) {
