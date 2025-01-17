@@ -68,7 +68,7 @@ public class Game{
   public static void TextBox(int row, int col, int width, int height, String text){
 
     for (int i = 0; i < text.length(); i ++){
-      if (text)
+
     }
 
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -111,7 +111,7 @@ public class Game{
 
       Text.go (2, 2);
 
-      System.out.println( Boss.getHP())
+      System.out.println( Boss.getHP());
 
 
      /// add code
@@ -146,7 +146,7 @@ public class Game{
   }
 
   public static String userInput(Scanner in){
-    Text.go(HEIGHT - 2; 1)
+    Text.go(HEIGHT - 2, 1);
     Text.showCursor();
       //Move cursor to prompt location
 
@@ -154,7 +154,7 @@ public class Game{
 
       String input = in.nextLine();
 
-      Text.go(HEIGHT - 2; 1);
+      Text.go(HEIGHT - 2, 1);
       Text.clear();
 
       //clear the text that was written
