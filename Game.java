@@ -21,7 +21,7 @@ public class Game{
 
     for (int i = 0; i < HEIGHT - 2; i++){
       System.out.println(Text.colorize("|", BORDER_COLOR, BORDER_BACKGROUND));
-      for (int j = 0; ij < WIDTH - 2; j++){
+      for (int j = 0; i < WIDTH - 2; j++){
         System.out.println(" ");
       }
       System.out.println(Text.colorize("|", BORDER_COLOR, BORDER_BACKGROUND));
@@ -29,6 +29,18 @@ public class Game{
 
     for (int i = 0; i < WIDTH; i++){
       System.out.println(Text.colorize("-", BORDER_COLOR, BORDER_BACKGROUND));
+    }
+
+    for (int i = 0; i < WIDTH; i++){
+      drawText("-", 10, 1);
+    }
+
+    for (int i = 0; i < WIDTH; i++){
+      drawText("-", 20, 1);
+    }
+
+    for (int i = 0; i < WIDTH; i++){
+      drawText("-", 30, 1);
     }
 
     System.out.println();
@@ -54,22 +66,15 @@ public class Game{
   *@param height the number of rows
   */
   public static void TextBox(int row, int col, int width, int height, String text){
-    int i = 0;
-    for (int r = 0; r < height; r++) {
-      for (int c = 0; c < width; c++) {
-        int id = r * width + c;
-        if (id < text.length()) {
-          drawText(String.valueOf(text.charAt(id)), row + r, col + c);
-        } else {
-          drawText(" ", r + row , c + col);
-        }
-      }
+
+    for (int i = 0; i < text.length(); i ++){
+      if (text)
     }
 
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-}
+  }
 
 
 
@@ -104,12 +109,12 @@ public class Game{
     */
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
 
-      for (int i = 0; i < party.size(); i++) {
-        if (i < party.size() - 1) {
-          drawText("", currentRow++, 2);
-        }
+      Text.go (2, 2);
 
-     /// finish/add code
+      System.out.println( Boss.getHP())
+
+
+     /// add code
     }
 
 
@@ -134,18 +139,23 @@ public class Game{
 
     drawBackground();
 
-    drawParty(party, 4);
+    //draw player party
 
-    drawParty(enemies, 20);
+    //draw enemy party
 
   }
 
   public static String userInput(Scanner in){
+    Text.go(HEIGHT - 2; 1)
+    Text.showCursor();
       //Move cursor to prompt location
 
       //show cursor
 
       String input = in.nextLine();
+
+      Text.go(HEIGHT - 2; 1);
+      Text.clear();
 
       //clear the text that was written
 
