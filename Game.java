@@ -31,18 +31,6 @@ public class Game{
       System.out.println(Text.colorize("-", BORDER_COLOR, BORDER_BACKGROUND));
     }
 
-    for (int i = 0; i < WIDTH; i++){
-      drawText("-", 10, 1);
-    }
-
-    for (int i = 0; i < WIDTH; i++){
-      drawText("-", 20, 1);
-    }
-
-    for (int i = 0; i < WIDTH; i++){
-      drawText("-", 30, 1);
-    }
-
     System.out.println();
 
   }
@@ -71,9 +59,9 @@ public class Game{
       for (int c = 0; c < width; c++) {
         int id = r * width + c;
         if (id < text.length()) {
-          drawText((text.charAt(idx)), row + r, col + c);
+          drawText(String.valueOf(text.charAt(id)), row + r, col + c);
         } else {
-          drawText(" ", r , c);
+          drawText(" ", r + row , c + col);
         }
       }
     }
@@ -116,8 +104,12 @@ public class Game{
     */
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
 
+      for (int i = 0; i < party.size(); i++) {
+        if (i < party.size() - 1) {
+          drawText("", currentRow++, 2);
+        }
 
-     /// add code
+     /// finish/add code
     }
 
 
@@ -142,9 +134,9 @@ public class Game{
 
     drawBackground();
 
-    //draw player party
+    drawParty(party, 4);
 
-    //draw enemy party
+    drawParty(enemies, 20);
 
   }
 
