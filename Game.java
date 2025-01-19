@@ -66,24 +66,42 @@ public class Game{
   *@param height the number of rows
   */
   public static void TextBox(int row, int col, int width, int height, String text){
-    int rows = row;
-    int columns = col;
 
-    int startIndex = 0;
-    while (startIndex < text.length()) {
-      int endIndex = Math.min(startIndex + width, text.length());
-      String line = text.substring(startIndex, endIndex);
-      drawText(line, rows, columns);
-      rows++;
-      startIndex = endIndex;
+    String[] words = text.split(" ");
 
-      if (rows >= row + height) {
-        break;
+    int currentRow = row;
+    int lineLength = 0;
+    String currentLine = "";
+
+    for (String word : words) {
+      if (lineLength + word.length() + 1 > width) {
+        drawText(currentLine, currentRow, col);
+
+        currentRow++;
+        if (currentRow >= row + height) {
+          break;
+        }
+
+        lineLength = 0;
+        currentLine = "";
       }
+
+      if (!currentLine.isEmpty()) {
+        currentLine += " ";
+        lineLength++;
+      }
+        currentLine += word;
+        lineLength += word.length();
     }
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-    //YOUR CODE HERE
-    /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+    if (!currentLine.isEmpty() && currentRow < row + height) {
+      drawText(currentLine, currentRow, col);
+      currentRow++;
+    }
+
+    for (int i = currentRow; i < row + height; i++) {
+      drawText(" ".repeat(width), i, col);
+    }
   }
 
 
@@ -306,7 +324,7 @@ public class Game{
           }
         }
         if (action == 2) {
-          enemies.get(enemyIndex).special(party.get(partyIndex));
+          enemies.get(enemyIndex).specialAttack(party.get(partyIndex));
         }
         /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
