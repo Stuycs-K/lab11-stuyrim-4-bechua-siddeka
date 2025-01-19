@@ -174,9 +174,7 @@ public class Game{
 
     drawParty(enemies, 16);
 
-    //draw player party
-
-    //draw enemy party
+    drawText("-".repeat(WIDTH - 2), 15, 2);
 
   }
 
