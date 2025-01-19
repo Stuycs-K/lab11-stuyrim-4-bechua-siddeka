@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Boss extends Adventurer{
   private int attackMin = 10;
@@ -6,7 +7,7 @@ public class Boss extends Adventurer{
   private int supportMin = 7;
   private int supportMax = 9;
   private int specialResource;
-  private int specialMax = 100;
+  private int specialMax = 20;
 
   public Boss(String name) {
     super(name, 80);
@@ -37,14 +38,14 @@ public class Boss extends Adventurer{
     }
 
     other.applyDamage(damage);
-    setSpecial(getSpecial() + 2);
+    setSpecial(getSpecial() + 4);
     return getName() + " attacks " + other.getName() + " dealing " + damage + " damage.";
   }
 
   public String support(){
-    int healing = (int)(Math.random() + 7) + 2;
+    int healing = (int)(Math.random() * (supportMax - supportMin + 1)) + supportMin;
     setHP(getHP() + healing);
-    return "the boss restored " + healing + " HP ti themselves";
+    return "the boss restored " + healing + " HP to themselves";
   }
 
   public String support(Adventurer other){
@@ -56,28 +57,44 @@ public class Boss extends Adventurer{
   public String specialAttack(Adventurer other) {
     if (getSpecial() >= 20) {
       setSpecial(getSpecial() - 20);
-      int damage = (int)(Math.random() * 10) + 15;
+
+      int totalDamage = 17;
+      Random random = new Random();
+      int damage = random.nextInt(totalDamage) + 1;
+
       other.applyDamage(damage);
-      return getName() + " attacks " + other.getName() + " by " + damage + " HP. ";
+      totalDamage -= damage;
+
+      other.applyDamage(totalDamage);
+      return getName() + " uses Rage on " + other.getName() + " dealing " + damage + " and " + totalDamage + " total damage.";
     } else {
       return getName() + " does not have enough Rage to use a special attack.";
     }
   }
 
   public String specialAttack(ArrayList<Adventurer> others) {
-    String result = "";
     if (getSpecial() >= 20) {
       setSpecial(getSpecial() - 20);
-      int damage = 17;
+      int tdamage = 17;
+      Random random = new Random();
+
+      int[] damages = new int[others.size()];
+      int remainingDamage = tdamage;
       for (int i = 0; i < others.size(); i++) {
-        target.applyDamage(damage);
-        result += getName() + " unleashes a special attack on " + target.getName() + " and damages by " + damage + " hp.";
+        int damage = random.nextInt(remainingDamage / (others.size() - i)) + 1;
+        damages[i] = damage;
+        remainingDamage -= damage;
       }
+
+      String result = getName() + " uses Rage to attack all enemies: ";
+      for (int i = 0; i < others.size(); i++) {
+        others.get(i).applyDamage(damages[i]);
+        result += others.get(i).getName() + " takes " + damages[i] + " damage ";
+      }
+
       return result;
     } else {
-      return getName() + " does not have enough Rage to use a special attack.";
+      return getName() + " does not have enough magic points to use Rage";
     }
   }
-
-
 }
