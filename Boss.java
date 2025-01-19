@@ -62,9 +62,9 @@ public class Boss extends Adventurer{
       Random random = new Random();
       int damage = random.nextInt(totalDamage) + 1;
 
-      other.applyDamage(damage);
       totalDamage -= damage;
 
+      other.applyDamage(damage);
       other.applyDamage(totalDamage);
       return getName() + " uses Rage on " + other.getName() + " dealing " + damage + " and " + totalDamage + " total damage.";
     } else {
@@ -80,16 +80,15 @@ public class Boss extends Adventurer{
 
       int[] damages = new int[others.size()];
       int remainingDamage = tdamage;
-      for (int i = 0; i < others.size(); i++) {
-        Adventurer target = others.get(i);
-        target.applyDamage(damage);
-        result += getName() + " unleashes a special attack on " + target.getName() + " and damages by " + damage + " hp.";
-      }
-
       String result = getName() + " uses Rage to attack all enemies: ";
       for (int i = 0; i < others.size(); i++) {
-        others.get(i).applyDamage(damages[i]);
-        result += others.get(i).getName() + " takes " + damages[i] + " damage ";
+        Adventurer target = others.get(i);
+        int damage = random.nextInt(remainingDamage) + 1;
+        damages[i] = damage;
+        remainingDamage -= damage;
+
+        target.applyDamage(damage);
+        result += getName() + " unleashes a special attack on " + target.getName() + " and damages by " + damage + " hp.";
       }
 
       return result;
