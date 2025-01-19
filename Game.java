@@ -118,12 +118,33 @@ public class Game{
     * ***THIS ROW INTENTIONALLY LEFT BLANK***
     */
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
-      for (int i = 0; i < party.size(); i++) {
-        Adventurer adventurer = party.get(i);
-        drawText(adventurer.getName(), startRow + i * 4, 2);
-        drawText("HP: " + colorByPercent(adventurer.getHP(), adventurer.getmaxHP()), startRow + i * 4 + 1, 2);
-        drawText(adventurer.getSpecialName() + ": " + adventurer.getSpecial(), startRow + i * 4 + 2, 2);
+      String namesRow = "";
+      String hpRow = "";
+      String specialRow = "";
+
+      for (Adventurer adventurer : party) {
+        String name = adventurer.getName();
+        namesRow += name;
+        for (int i = name.length(); i < 20; i++) {
+            namesRow += " ";
+        }
+
+        String hp = "HP: " + colorByPercent(adventurer.getHP(), adventurer.getmaxHP());
+        hpRow += hp;
+        for (int i = hp.length(); i < 20; i++) {
+            hpRow += " ";
+        }
+
+        String special = adventurer.getSpecialName() + ": " + adventurer.getSpecial();
+        specialRow += special;
+        for (int i = special.length(); i < 20; i++) {
+            specialRow += " ";
+        }
       }
+
+      drawText(namesRow, startRow, 2);
+      drawText(hpRow, startRow + 1, 2);
+      drawText(specialRow, startRow + 2, 2);
      /// add code
     }
 
