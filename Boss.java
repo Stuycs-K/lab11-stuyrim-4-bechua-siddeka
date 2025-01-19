@@ -70,6 +70,7 @@ public class Boss extends Adventurer{
       setSpecial(getSpecial() - 20);
       int damage = 17;
       for (int i = 0; i < others.size(); i++) {
+        Adventurer target = others.get(i);
         target.applyDamage(damage);
         result += getName() + " unleashes a special attack on " + target.getName() + " and damages by " + damage + " hp.";
       }
