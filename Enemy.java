@@ -12,4 +12,24 @@ public class Enemy {
     this.special = special;
     this.specialName = specialName;
   }
+
+  public String getName(){
+        return name;
+    }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public int getMaxHP(){
+        return maxHP;
+    }
+
+    public String getSpecial() {
+        return special;
+    }
+
+    public String getSpecialName() {
+        return specialName;
+    }
 }
