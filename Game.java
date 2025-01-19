@@ -14,32 +14,30 @@ public class Game{
   public static void drawBackground(){
 
     for (int i = 0; i < WIDTH; i++){
-      System.out.println(Text.colorize("-", BORDER_COLOR, BORDER_BACKGROUND));
+      System.out.print("-");
     }
-
     System.out.println();
 
-    for (int i = 0; i < HEIGHT - 2; i++){
-      System.out.println(Text.colorize("|", BORDER_COLOR, BORDER_BACKGROUND));
-      for (int j = 0; j < WIDTH - 2; j++){
-        System.out.println(" ");
+    for (int i = 2; i < HEIGHT; i++) {
+      Text.go(i, 1);
+      System.out.print("|");
+
+      for (int j = 2; j < WIDTH; j++){
+        System.out.print(" ");
       }
-      System.out.println(Text.colorize("|", BORDER_COLOR, BORDER_BACKGROUND));
+      System.out.println("|");
     }
 
+    Text.go(HEIGHT, 1);
     for (int i = 0; i < WIDTH; i++){
-      System.out.println(Text.colorize("-", BORDER_COLOR, BORDER_BACKGROUND));
+      System.out.print("-");
     }
     System.out.println();
 
     drawText("-", 10, 1);
     drawText("-", 20, 1);
     drawText("-", 30, 1);
-
-    System.out.println();
-
   }
-
   //Display a line of text starting at
   //(columns and rows start at 1 (not zero) in the terminal)
   //use this method in your other text drawing methods to make things simpler.
@@ -130,7 +128,7 @@ public class Game{
       for (int i = 0; i < party.size(); i++) {
         Adventurer adventurer = party.get(i);
         drawText(adventurer.getName(), startRow + i * 4, 2);
-        drawText("HP: " + colorByPercent(adventurer.getHP(), adventurer.getMaxHP()), startRow + i * 4 + 1, 2);
+        drawText("HP: " + colorByPercent(adventurer.getHP(), adventurer.getmaxHP()), startRow + i * 4 + 1, 2);
         drawText(adventurer.getSpecialName() + ": " + adventurer.getSpecial(), startRow + i * 4 + 2, 2);
       }
      /// add code
