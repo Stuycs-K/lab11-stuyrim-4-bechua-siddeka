@@ -42,7 +42,7 @@ public class Healer extends Adventurer {
         Random random = new Random();
         int addedHP = random.nextInt(3) + 5;
 
-        other.setHP(getHP()+addedHP);
+        other.setHP(other.getHP()+addedHP);
         setSpecial(getSpecial()+addedHP);
 
         return getName() + " restored " + addedHP + " HP for " + other.getName() + ". They need to restore " + (15-getSpecial()) + " HP to unlock their special.";
