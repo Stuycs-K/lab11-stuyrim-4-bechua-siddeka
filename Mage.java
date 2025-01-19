@@ -67,7 +67,13 @@ public class Mage extends Adventurer {
   }
 
   public String support() {
-    return null;
+    int healing = (int) (Math.random() * 3) + 2;
+    setHP(getHP() + healing);
+    magicPoints += 1;
+    if (magicPoints >= MAGIC_THRESHOLD && !specialUsed) {
+      specialUsed = true;
+    }
+    return getName() + " heals themself by " + healing + " HP.";
   }
 
   public String specialAttack(Adventurer other) {
