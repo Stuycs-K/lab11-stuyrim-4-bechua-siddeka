@@ -21,7 +21,7 @@ public class Game{
 
     for (int i = 0; i < HEIGHT - 2; i++){
       System.out.println(Text.colorize("|", BORDER_COLOR, BORDER_BACKGROUND));
-      for (int j = 0; i < WIDTH - 2; j++){
+      for (int j = 0; j < WIDTH - 2; j++){
         System.out.println(" ");
       }
       System.out.println(Text.colorize("|", BORDER_COLOR, BORDER_BACKGROUND));
@@ -30,18 +30,11 @@ public class Game{
     for (int i = 0; i < WIDTH; i++){
       System.out.println(Text.colorize("-", BORDER_COLOR, BORDER_BACKGROUND));
     }
+    System.out.println();
 
-    for (int i = 0; i < WIDTH; i++){
-      drawText("-", 10, 1);
-    }
-
-    for (int i = 0; i < WIDTH; i++){
-      drawText("-", 20, 1);
-    }
-
-    for (int i = 0; i < WIDTH; i++){
-      drawText("-", 30, 1);
-    }
+    drawText("-", 10, 1);
+    drawText("-", 20, 1);
+    drawText("-", 30, 1);
 
     System.out.println();
 
@@ -105,8 +98,6 @@ public class Game{
   }
 
 
-
-
     //return a random adventurer (choose between all available subclasses)
     //feel free to overload this method to allow specific names/stats.
     public static Adventurer createRandomAdventurer(){
@@ -136,12 +127,12 @@ public class Game{
     * ***THIS ROW INTENTIONALLY LEFT BLANK***
     */
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
-
-      Text.go (2, 2);
-
-      System.out.println(Boss.getHP());
-
-
+      for (int i = 0; i < party.size(); i++) {
+        Adventurer adventurer = party.get(i);
+        drawText(adventurer.getName(), startRow + i * 4, 2);
+        drawText("HP: " + colorByPercent(adventurer.getHP(), adventurer.getMaxHP()), startRow + i * 4 + 1, 2);
+        drawText(adventurer.getSpecialName() + ": " + adventurer.getSpecial(), startRow + i * 4 + 2, 2);
+      }
      /// add code
     }
 
@@ -166,6 +157,10 @@ public class Game{
   public static void drawScreen(ArrayList<Adventurer> party, ArrayList<Adventurer> enemies){
 
     drawBackground();
+
+    drawParty(party, 6);
+
+    drawParty(enemies, 16);
 
     //draw player party
 
