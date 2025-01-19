@@ -12,31 +12,24 @@ public class Game{
   //Display the borders of your screen that will not change.
   //Do not write over the blank areas where text will appear or parties will appear.
   public static void drawBackground(){
-
-    for (int i = 0; i < WIDTH; i++){
-      System.out.print("-");
+    Text.go(1, 1);
+    for (int i = 0; i < WIDTH; i++) {
+        System.out.print("-");
     }
-    System.out.println();
 
     for (int i = 2; i < HEIGHT; i++) {
-      Text.go(i, 1);
-      System.out.print("|");
-
-      for (int j = 2; j < WIDTH; j++){
-        System.out.print(" ");
-      }
-      System.out.println("|");
+        Text.go(i, 1);
+        System.out.print("|");
+        for (int j = 2; j < WIDTH; j++) {
+            System.out.print(" ");
+        }
+        System.out.print("|");
     }
 
     Text.go(HEIGHT, 1);
-    for (int i = 0; i < WIDTH; i++){
-      System.out.print("-");
+    for (int i = 0; i < WIDTH; i++) {
+        System.out.print("-");
     }
-    System.out.println();
-
-    drawText("-", 10, 1);
-    drawText("-", 20, 1);
-    drawText("-", 30, 1);
   }
   //Display a line of text starting at
   //(columns and rows start at 1 (not zero) in the terminal)
