@@ -66,11 +66,21 @@ public class Game{
   *@param height the number of rows
   */
   public static void TextBox(int row, int col, int width, int height, String text){
+    int rows = row;
+    int columns = col;
 
-    for (int i = 0; i < text.length(); i ++){
+    int startIndex = 0;
+    while (startIndex < text.length()) {
+      int endIndex = Math.min(startIndex + width, text.length());
+      String line = text.substring(startIndex, endIndex);
+      drawText(line, rows, columns);
+      rows++;
+      startIndex = endIndex;
 
+      if (rows >= row + height) {
+        break;
+      }
     }
-
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
     //YOUR CODE HERE
     /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
