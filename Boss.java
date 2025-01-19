@@ -81,9 +81,9 @@ public class Boss extends Adventurer{
       int[] damages = new int[others.size()];
       int remainingDamage = tdamage;
       for (int i = 0; i < others.size(); i++) {
-        int damage = random.nextInt(remainingDamage / (others.size() - i)) + 1;
-        damages[i] = damage;
-        remainingDamage -= damage;
+        Adventurer target = others.get(i);
+        target.applyDamage(damage);
+        result += getName() + " unleashes a special attack on " + target.getName() + " and damages by " + damage + " hp.";
       }
 
       String result = getName() + " uses Rage to attack all enemies: ";
