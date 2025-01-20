@@ -260,30 +260,48 @@ public class Game{
       //Read user input
       input = userInput(in);
 
+      /*
       //example debug statment
       TextBox(24,2,1,78,"input: "+input+" partyTurn:"+partyTurn+ " whichPlayer="+whichPlayer+ " whichOpp="+whichOpponent );
+      */
 
       //display event based on last turn's input
       if(partyTurn){
 
         //Process user input for the last Adventurer:
-        if(input.equals("attack") || input.equals("a")){
+        if(input.startsWith("attack ") || input.startsWith("a ")){
           Adventurer attacker = party.get(whichPlayer);
-          Adventurer target = enemies.get(whichOpponent);
+          int targetIndex = Integer.parseInt(input.split(" ")[1]);
+          Adventurer target = enemies.get(targetIndex);
 
           String attackMessage = attacker.attack(target);
+          TextBox(HEIGHT - 3, 3, WIDTH - 6, 1, attackMessage);
+
+          if (target.getHP() <= 0) {
+            TextBox(25, 2, WIDTH - 2, 1, target.getName() + " has been defeated!");
+            enemies.remove(targetIndex);
+          }
         }
         else if(input.equals("special") || input.equals("sp")){
-          /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          //YOUR CODE HERE
-          /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+          Adventurer attacker = party.get(whichPlayer);
+          int targetIndex = Integer.parseInt(input.split(" ")[1]);
+          Adventurer target = enemies.get(targetIndex);
+
+          String specialMessage = attacker.specialAttack(target);
+          TextBox(24, 2, WIDTH - 2, 1, specialMessage);
+
+          if (target.getHP() <= 0) {
+            TextBox(25, 2, WIDTH - 2, 1, target.getName() + " has been defeated!");
+            enemies.remove(targetIndex);
+          }
         }
         else if(input.startsWith("su ") || input.startsWith("support ")){
-          //"support 0" or "su 0" or "su 2" etc.
-          //assume the value that follows su  is an integer.
-          /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          //YOUR CODE HERE
-          /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+          Adventurer supporter = party.get(whichPlayer);
+          int targetIndex = Integer.parseInt(input.split(" ")[1]);
+          Adventurer target = party.get(targetIndex);
+
+          String supportMessage = supporter.support(target);
+          TextBox(24, 2, WIDTH - 2, 1, supportMessage);
         }
 
         //You should decide when you want to re-ask for user input
