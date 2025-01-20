@@ -8,8 +8,8 @@ public class Enemy extends Adventurer {
   private String specialName;
 
   public Enemy(String name, int maxHP, int special, String specialName){
-    super(name, maxHP);
-    this.specialMax = specialMax;
+    super(name, 30);
+    this.specialMax = 30;
     this.special = special;
     this.specialName = specialName;
   }
