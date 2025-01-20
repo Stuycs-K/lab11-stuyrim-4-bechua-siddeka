@@ -1,10 +1,18 @@
 import java.util.Random;
 public class Enemy extends Adventurer {
-  private int rage;
+  private String name;
+  private int HP;
+  private int maxHP;
+  private int special;
+  private int specialMax;
+  private String specialName;
 
   public Enemy(String name, int maxHP, String special, String specialName){
-    super(name, maxHP, special, specialName);
-    this.rage = 0;
+    this.name = name;
+    this.maxHP = maxHP;
+    this.HP = maxHP;
+    this.special = special;
+    this.specialName = specialName;
   }
 
   public String getName(){
@@ -19,30 +27,34 @@ public class Enemy extends Adventurer {
       return maxHP;
     }
 
-    public String getSpecial() {
+    public int getSpecial() {
       return special;
+    }
+
+    public int getSpecialMax() {
+      return specialMax;
     }
 
     public String getSpecialName() {
       return specialName;
     }
 
-    public void attack(Adventurer target) {
+    public void attack(Adventurer other) {
       Random rng = new Random();
       int damage = rng.nextInt(5) + 5;
-      System.out.println(this.name + " attacks " + target.getName() + " for " + damage + " damage!");
+      System.out.println(this.name + " attacks " + other.getName() + " for " + damage + " damage!");
 
-      target.takeDamage(damage);
+      other.applyDamage(damage);
     }
 
     public void support() {
       System.out.println(this.name + " provides support to an ally!");
     }
 
-    public void specialAttack(Adventurer target) {
+    public void specialAttack(Adventurer other) {
       Random rng = new Random();
-      int specialDamage = rng.nextInt(10) + 10;  // Special attack does more damage
-      System.out.println(this.name + " uses special attack " + this.specialName + " on " + target.getName() + " for " + specialDamage + " damage!");
-      target.applyDamage(specialDamage);
+      int specialDamage = rng.nextInt(10) + 10;
+      System.out.println(this.name + " uses special attack " + this.specialName + " on " + other.getName() + " for " + specialDamage + " damage!");
+      other.applyDamage(specialDamage);
     }
 }
