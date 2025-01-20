@@ -7,10 +7,9 @@ public class Enemy extends Adventurer {
   private int specialMax;
   private String specialName;
 
-  public Enemy(String name, int maxHP, String special, String specialName){
-    this.name = name;
-    this.maxHP = maxHP;
-    this.HP = maxHP;
+  public Enemy(String name, int maxHP, int special, String specialName){
+    super(name, maxHP);
+    this.specialMax = specialMax;
     this.special = special;
     this.specialName = specialName;
   }
@@ -28,33 +27,47 @@ public class Enemy extends Adventurer {
     }
 
     public int getSpecial() {
-      return special;
+      return this.special;
     }
 
     public int getSpecialMax() {
-      return specialMax;
+      return this.specialMax;
     }
 
     public String getSpecialName() {
-      return specialName;
+      return this.specialName;
     }
 
-    public void attack(Adventurer other) {
+    public void setSpecial(int n) {
+      if (n > this.specialMax){
+        this.special = this.specialMax;
+      } else {
+        this.special = n;
+      }
+    }
+
+    public String attack(Adventurer other) {
       Random rng = new Random();
       int damage = rng.nextInt(5) + 5;
-      System.out.println(this.name + " attacks " + other.getName() + " for " + damage + " damage!");
-
       other.applyDamage(damage);
+      return this.name + " attacks " + other.getName() + " for " + damage + " damage!";
     }
 
-    public void support() {
-      System.out.println(this.name + " provides support to an ally!");
+    public String support() {
+      this.setHP(this.getHP() + 5);
+        return this.getName() + " supports themself with 5 HP";
     }
 
-    public void specialAttack(Adventurer other) {
+    public String support(Adventurer other) {
+      other.setHP(other.getHP() + 5);
+      return this.getName() + " supports " + other.getName() + " with 5 HP";
+    }
+
+    public String specialAttack(Adventurer other) {
       Random rng = new Random();
       int specialDamage = rng.nextInt(10) + 10;
-      System.out.println(this.name + " uses special attack " + this.specialName + " on " + other.getName() + " for " + specialDamage + " damage!");
       other.applyDamage(specialDamage);
+        this.setSpecial(this.getSpecial() - 10);
+        return this.getName() + " uses " + this.getSpecialName() + " on " + other.getName() + " for " + specialDamage + " damage";
     }
 }
