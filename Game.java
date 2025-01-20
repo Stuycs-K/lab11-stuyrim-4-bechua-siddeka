@@ -12,31 +12,24 @@ public class Game{
   //Display the borders of your screen that will not change.
   //Do not write over the blank areas where text will appear or parties will appear.
   public static void drawBackground(){
-
-    for (int i = 0; i < WIDTH; i++){
-      System.out.print("-");
+    Text.go(1, 1);
+    for (int i = 0; i < WIDTH; i++) {
+        System.out.print("-");
     }
-    System.out.println();
 
     for (int i = 2; i < HEIGHT; i++) {
-      Text.go(i, 1);
-      System.out.print("|");
-
-      for (int j = 2; j < WIDTH; j++){
-        System.out.print(" ");
-      }
-      System.out.println("|");
+        Text.go(i, 1);
+        System.out.print("|");
+        for (int j = 2; j < WIDTH; j++) {
+            System.out.print(" ");
+        }
+        System.out.print("|");
     }
 
     Text.go(HEIGHT, 1);
-    for (int i = 0; i < WIDTH; i++){
-      System.out.print("-");
+    for (int i = 0; i < WIDTH; i++) {
+        System.out.print("-");
     }
-    System.out.println();
-
-    drawText("-", 10, 1);
-    drawText("-", 20, 1);
-    drawText("-", 30, 1);
   }
   //Display a line of text starting at
   //(columns and rows start at 1 (not zero) in the terminal)
@@ -125,12 +118,33 @@ public class Game{
     * ***THIS ROW INTENTIONALLY LEFT BLANK***
     */
     public static void drawParty(ArrayList<Adventurer> party,int startRow){
-      for (int i = 0; i < party.size(); i++) {
-        Adventurer adventurer = party.get(i);
-        drawText(adventurer.getName(), startRow + i * 4, 2);
-        drawText("HP: " + colorByPercent(adventurer.getHP(), adventurer.getmaxHP()), startRow + i * 4 + 1, 2);
-        drawText(adventurer.getSpecialName() + ": " + adventurer.getSpecial(), startRow + i * 4 + 2, 2);
+      String namesRow = "";
+      String hpRow = "";
+      String specialRow = "";
+
+      for (Adventurer adventurer : party) {
+        String name = adventurer.getName();
+        namesRow += name;
+        for (int i = name.length(); i < 20; i++) {
+            namesRow += " ";
+        }
+
+        String hp = "HP: " + colorByPercent(adventurer.getHP(), adventurer.getmaxHP());
+        hpRow += hp;
+        for (int i = hp.length(); i < 20; i++) {
+            hpRow += " ";
+        }
+
+        String special = adventurer.getSpecialName() + ": " + adventurer.getSpecial();
+        specialRow += special;
+        for (int i = special.length(); i < 20; i++) {
+            specialRow += " ";
+        }
       }
+
+      drawText(namesRow, startRow, 2);
+      drawText(hpRow, startRow + 1, 2);
+      drawText(specialRow, startRow + 2, 2);
      /// add code
     }
 
@@ -160,9 +174,7 @@ public class Game{
 
     drawParty(enemies, 16);
 
-    //draw player party
-
-    //draw enemy party
+    drawText("-".repeat(WIDTH - 2), 15, 2);
 
   }
 
@@ -242,6 +254,7 @@ public class Game{
 
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+    drawText(preprompt, HEIGHT, 2);
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
@@ -255,9 +268,10 @@ public class Game{
 
         //Process user input for the last Adventurer:
         if(input.equals("attack") || input.equals("a")){
-          /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          //YOUR CODE HERE
-          /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+          Adventurer attacker = party.get(whichPlayer);
+          Adventurer target = enemies.get(whichOpponent);
+
+          String attackMessage = attacker.attack(target);
         }
         else if(input.equals("special") || input.equals("sp")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -281,7 +295,7 @@ public class Game{
           //This is a player turn.
           //Decide where to draw the following prompt:
           String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-
+          drawText(prompt, HEIGHT - 1, 2);
 
         }else{
           //This is after the player's turn, and allows the user to see the enemy turn
@@ -290,6 +304,7 @@ public class Game{
 
           partyTurn = false;
           whichOpponent = 0;
+          drawText(prompt, HEIGHT - 1, 2);
         }
         //done with one party member
       }else{
