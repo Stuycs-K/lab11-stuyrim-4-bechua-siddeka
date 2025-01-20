@@ -254,6 +254,7 @@ public class Game{
 
     //display this prompt at the start of the game.
     String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+    drawText(preprompt, HEIGHT, 2);
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
       //Read user input
@@ -267,9 +268,10 @@ public class Game{
 
         //Process user input for the last Adventurer:
         if(input.equals("attack") || input.equals("a")){
-          /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-          //YOUR CODE HERE
-          /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+          Adventurer attacker = party.get(whichPlayer);
+          Adventurer target = enemies.get(whichOpponent);
+
+          String attackMessage = attacker.attack(target);
         }
         else if(input.equals("special") || input.equals("sp")){
           /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -293,7 +295,7 @@ public class Game{
           //This is a player turn.
           //Decide where to draw the following prompt:
           String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-
+          drawText(prompt, HEIGHT - 1, 2);
 
         }else{
           //This is after the player's turn, and allows the user to see the enemy turn
@@ -302,6 +304,7 @@ public class Game{
 
           partyTurn = false;
           whichOpponent = 0;
+          drawText(prompt, HEIGHT - 1, 2);
         }
         //done with one party member
       }else{
