@@ -40,9 +40,16 @@ The game includes different adventurers, each with their own abilities and roles
 
 ---
 
-## The Dragon Boss
+### Enemies
+
+**Starting HP:** 30 HP
+
+- **Attack:** Deals 5-7 damage to a single target.
+- **Support:** Heals by 5 HP (can be used on itself or another ally).
+- **Special Attack:** Deals higher damage based on its special resource (rage). This attack can range between 10-15 damage depending on the amount of special resources it has.
 
 ### Dragon
+
 **Starting HP:** 80 HP
 * **Attack:** Deals 10-12 damage to a single target.
 * **Support:** Adds 7-9 HP to itself.
