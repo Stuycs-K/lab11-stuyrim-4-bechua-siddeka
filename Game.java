@@ -260,7 +260,7 @@ public class Game{
         whichPlayer = 0;
       }
 
-      String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+      String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit [index]";
       drawText(preprompt, HEIGHT, 2);
       //Read user input
       input = userInput(in);
@@ -327,7 +327,7 @@ public class Game{
         if(whichPlayer < party.size()){
           //This is a player turn.
           //Decide where to draw the following prompt:
-          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+          String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit [index]";
           drawText(prompt, HEIGHT - 1, 2);
 
         }else{
@@ -375,7 +375,7 @@ public class Game{
         turn++;
         partyTurn=true;
         //display this prompt before player's turn
-        String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+        String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit [index]";
         drawText(prompt, HEIGHT - 1, 2);
       }
 
