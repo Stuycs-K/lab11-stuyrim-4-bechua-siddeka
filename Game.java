@@ -137,7 +137,7 @@ public class Game{
         hpRow += hp;
 
         String special = adventurer.getSpecialName() + ": " + adventurer.getSpecial();
-        while (special.length() < COLUMN_WIDTH)
+        while (special.length() < COLUMN_WIDTH){
             special += " ";
         }
         specialRow += special;
@@ -220,8 +220,7 @@ public class Game{
     if (numOfEnemies == 1) {
       Boss boss = new Boss("Boss"+(int)(Math.random()*100));
       enemies.add(boss);
-    }
-    else {
+    } else {
       for (int x = 0; x < numOfEnemies; x++) {
         enemies.add(createRandomAdventurer());
       }
@@ -254,10 +253,11 @@ public class Game{
     //Main loop
 
     //display this prompt at the start of the game.
-    String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
-    drawText(preprompt, HEIGHT, 2);
+
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
+      String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+      drawText(preprompt, HEIGHT, 2);
       //Read user input
       input = userInput(in);
 
@@ -270,7 +270,7 @@ public class Game{
       if(partyTurn){
 
         //Process user input for the last Adventurer:
-        if(input.startsWith("attack ") || input.startsWith("a ")){
+        if (input.startsWith("attack ") || input.startsWith("a ")) {
           Adventurer attacker = party.get(whichPlayer);
           int targetIndex = Integer.parseInt(input.split(" ")[1]);
           Adventurer target = enemies.get(targetIndex);
@@ -282,8 +282,7 @@ public class Game{
             TextBox(25, 2, WIDTH - 2, 1, target.getName() + " has been defeated!");
             enemies.remove(targetIndex);
           }
-        }
-        else if(input.equals("special") || input.equals("sp")){
+        } else if (input.equals("special") || input.equals("sp")) {
           Adventurer attacker = party.get(whichPlayer);
           int targetIndex = Integer.parseInt(input.split(" ")[1]);
           Adventurer target = enemies.get(targetIndex);
@@ -295,8 +294,7 @@ public class Game{
             TextBox(25, 2, WIDTH - 2, 1, target.getName() + " has been defeated!");
             enemies.remove(targetIndex);
           }
-        }
-        else if(input.startsWith("su ") || input.startsWith("support ")){
+        } else if (input.startsWith("su ") || input.startsWith("support ")) {
           Adventurer supporter = party.get(whichPlayer);
           int targetIndex = Integer.parseInt(input.split(" ")[1]);
           Adventurer target = party.get(targetIndex);
@@ -319,11 +317,11 @@ public class Game{
         }else{
           //This is after the player's turn, and allows the user to see the enemy turn
           //Decide where to draw the following prompt:
-          String prompt = "press enter to see monster's turn";
 
           partyTurn = false;
           whichOpponent = 0;
-          drawText(prompt, HEIGHT - 1, 2);
+          drawText("Press enter to see monster's turn", HEIGHT - 1, 2);
+
         }
         //done with one party member
       }else{
@@ -334,36 +332,26 @@ public class Game{
         //Enemy action choices go here!
         /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
         Random rand = new Random();
-        int enemyIndex = rand.nextInt(numOfEnemies);
-        int partyIndex = rand.nextInt(partySize);
+        int enemyIndex = rand.nextInt(enemies.size());
+        int partyIndex = rand.nextInt(party.size());
 
         int action = rand.nextInt(3);
 
         if (action == 0) {
           enemies.get(enemyIndex).attack(party.get(partyIndex));
-        }
-        if (action == 1) {
+        } else if (action == 1) {
           if (enemies.size() == 1) {
             enemies.get(enemyIndex).support();
+          } else {
+            enemies.get(enemyIndex).support(enemies.get(rand.nextInt(enemies.size())));
           }
-          else {
-            enemies.get(enemyIndex).support(enemies.get(rand.nextInt(numOfEnemies)));
-          }
-        }
-        if (action == 2) {
+        } else if (action == 2){
           enemies.get(enemyIndex).specialAttack(party.get(partyIndex));
         }
-        /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-
-        //Decide where to draw the following prompt:
-        String prompt = "press enter to see next turn";
 
         whichOpponent++;
+      }
 
-      }//end of one enemy.
-
-      //modify this if statement.
       if(!partyTurn && whichOpponent >= enemies.size()){
         //THIS BLOCK IS TO END THE ENEMY TURN
         //It only triggers after the last enemy goes.
@@ -376,7 +364,6 @@ public class Game{
 
       //display the updated screen after input has been processed.
       drawScreen(party, enemies);
-
 
     }//end of main game loop
 
