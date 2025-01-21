@@ -256,6 +256,10 @@ public class Game{
 
 
     while(! (input.equalsIgnoreCase("q") || input.equalsIgnoreCase("quit"))){
+      if (whichPlayer >= party.size()) {
+        whichPlayer = 0;
+      }
+
       String preprompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
       drawText(preprompt, HEIGHT, 2);
       //Read user input
@@ -273,6 +277,10 @@ public class Game{
         if (input.startsWith("attack ") || input.startsWith("a ")) {
           Adventurer attacker = party.get(whichPlayer);
           int targetIndex = Integer.parseInt(input.split(" ")[1]);
+          if (targetIndex < 0 || targetIndex >= enemies.size()) {
+            TextBox(HEIGHT - 3, 3, WIDTH - 6, 1, "Invalid target index.");
+            continue;
+          }
           Adventurer target = enemies.get(targetIndex);
 
           String attackMessage = attacker.attack(target);
@@ -285,6 +293,10 @@ public class Game{
         } else if (input.equals("special") || input.equals("sp")) {
           Adventurer attacker = party.get(whichPlayer);
           int targetIndex = Integer.parseInt(input.split(" ")[1]);
+          if (targetIndex < 0 || targetIndex >= enemies.size()) {
+            TextBox(HEIGHT - 3, 3, WIDTH - 6, 1, "Invalid target index.");
+            continue;
+          }
           Adventurer target = enemies.get(targetIndex);
 
           String specialMessage = attacker.specialAttack(target);
@@ -297,6 +309,10 @@ public class Game{
         } else if (input.startsWith("su ") || input.startsWith("support ")) {
           Adventurer supporter = party.get(whichPlayer);
           int targetIndex = Integer.parseInt(input.split(" ")[1]);
+          if (targetIndex < 0 || targetIndex >= party.size()) {
+            TextBox(HEIGHT - 3, 3, WIDTH - 6, 1, "Invalid target index.");
+            continue;
+          }
           Adventurer target = party.get(targetIndex);
 
           String supportMessage = supporter.support(target);
@@ -360,6 +376,16 @@ public class Game{
         partyTurn=true;
         //display this prompt before player's turn
         String prompt = "Enter command for "+party.get(whichPlayer)+": attack/special/quit";
+        drawText(prompt, HEIGHT - 1, 2);
+      }
+
+      if (party.isEmpty()) {
+        drawText("Game Over! All adventurers have been defeated.", HEIGHT - 2, 2);
+        break;
+      }
+      if (enemies.isEmpty()) {
+        drawText("Victory! All enemies have been defeated.", HEIGHT - 2, 2);
+        break;
       }
 
       //display the updated screen after input has been processed.
